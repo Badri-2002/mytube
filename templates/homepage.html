@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyTube - Homepage</title>
+  <style>
+    body { font-family: sans-serif; background-color: #f8f9fa; }
+    .video-card { background: white; padding: 16px; margin: 20px auto; width: 500px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+    video { width: 100%; height: auto; }
+    .comment { margin-left: 10px; padding: 6px; border-bottom: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">MyTube</h1>
+  {% for video in videos %}
+    <div class="video-card">
+      <h3>{{ video.title }}</h3>
+      <video controls>
+        <source src="{{ url_for('static', filename='uploads/' ~ video.filename) }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <form action="/like/{{ video.id }}" method="post">
+        <button type="submit">👍 Like ({{ video.likes }})</button>
+      </form>
+
+      <h4>Comments:</h4>
+      {% for comment in video.comments %}
+        <div class="comment">
+          <strong>{{ comment.username }}:</strong> {{ comment.text }}
+        </div>
+      {% endfor %}
+
+      <form action="/comment/{{ video.id }}" method="post" style="margin-top: 10px;">
+        <input type="text" name="username" placeholder="Your name" required><br><br>
+        <textarea name="comment" rows="2" placeholder="Add a comment..." required></textarea><br><br>
+        <button type="submit">💬 Comment</button>
+      </form>
+    </div>
+  {% endfor %}
+</body>
+</html>

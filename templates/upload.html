@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Video</title>
+</head>
+<body>
+    <h1>Upload a New Video</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label>Title:</label><br>
+        <input type="text" name="title" required><br><br>
+        <label>Video File (MP4):</label><br>
+        <input type="file" name="video" accept="video/mp4" required><br><br>
+        <button type="submit">Upload</button>
+    </form>
+    <br>
+    <a href="/">← Back to Homepage</a>
+</body>
+</html>
