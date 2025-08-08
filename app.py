@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 import os
-
+ 
 # Flask app setup
 app = Flask(__name__)
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
